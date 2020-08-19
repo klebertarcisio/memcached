@@ -581,6 +581,10 @@ struct extstore_conf_file *storage_conf_parse(char *arg, unsigned int page_size)
         goto error;
     // First arg is the filepath.
     cf = calloc(1, sizeof(struct extstore_conf_file));
+    if(cf == NULL){
+        fprintf(stderr, "Failed to allocate memory (out of memory). \n");
+        goto error;
+    }    
     cf->file = strdup(p);
 
     p = strtok_r(NULL, ":", &b);
